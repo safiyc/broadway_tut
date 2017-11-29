@@ -1,4 +1,5 @@
 class PlaysController < ApplicationController
+  # 'find_play' will run on 'show', 'edit', ...
   before_action :find_play, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -22,6 +23,23 @@ class PlaysController < ApplicationController
       # 'render' doesnt refresh page
       render 'new'
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @play.update(play_params)
+      # this redirects to the 'show' page of 'plays'
+      redirect_to play_path(@play)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @play.destroy
+    redirect_to root_path
   end
 
   private
