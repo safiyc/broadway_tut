@@ -6,9 +6,9 @@ before_action :find_play
   end
 
   def create
-    @review = Review.new(play_params)
+    @review = Review.new(review_params)
     @review.play_id = @play.id
-    @review.user_id = @current_user.id
+    @review.user_id = current_user.id
 
     if @review.save
       redirect_to play_path(@play)
